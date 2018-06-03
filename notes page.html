@@ -58,3 +58,66 @@ VULPIX
 [my] Att - 11
 [my] Cntr Att - 55
 
+~:~:~:~:~
+
+This'll be useful:
+var gandalf = {
+  "real name": "Gandalf",
+  "age (est)": 11000,
+  "race": "Maia",
+  "haveRetirementPlan": true,
+  "aliases": [
+    "Greyhame",
+    "Stormcrow",
+    "Mithrandir",
+    "Gandalf the Grey",
+    "Gandalf the White"
+  ]
+};
+
+function FindGandalf ()
+{
+  for(var i = 0; i < gandalf.aliases.length; i++)
+  {
+    if(gandalf.aliases[i] == "Gandalf the Grey")
+    {return i}
+  }
+}
+~:~:~:~:~
+
+
+What do I want to get done in this game?
+
+
+- user open game
+---- //reset
+- there are four pokemon to choose from 
+---- all four have stats
+- user choose a poke
+---- field appears
+---- chosen poke move to user side (back image)
+---- other pokes move to field's far side
+---- start pokebattle music
+- BATTLE!
+\---- click on your poke to attack
+\---- decrease opposite poke's HP by your Att
+\---- decrease your poke's HP by opp. poke's CAtt
+\---- increment your Att
+\---- offer the choice to attack again
+- do the above until WIN or LOSE
+- WIN: 
+---- once opp Poke's HP = 0,
+---- wins ++;
+---- offer next opponent choice
+- LOSE: 
+---- if your HP =< 0, 
+---- losses++;
+---- offer to play game again
+
+---- //reset
+
+
+
+
+
+
