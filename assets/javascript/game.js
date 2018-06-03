@@ -1,44 +1,76 @@
-// BULBASAUR
-// [my] HP - 100
-// [my] Att - 5 (++; each time)
-// [my] Cntr Att - 25
+// --------------------------------- section for vars and reset ----------------------------------- //
 
-// EEVEE
-// [my] HP - 160
-// [my] Att - 8
-// [my] Cntr Att - 40
+var userPoke; // I'm not sure if these should be empty or if they should be objects???
+var oppPoke; // I'm not sure if these should be empty or if they should be objects???
 
-// MAREEP
-// [my] HP - 200
-// [my] Att - 10
-// [my] Cntr Att - 50
+var wins = 0;
+var losses = 0;
 
-// VULPIX
-// [my] HP - 220
-// [my] Att - 11
-// [my] Cntr Att - 55
 
-var bulbasaur = {
-    "hp" : 100,
-    "attack" : 5,
-    "counteratt" : 25,
+function resetEverything {
+
+    var bulbasaur = {
+        "hp" : 100,
+        "attack" : 5,
+        "counteratt" : 25,
+    };
+
+    var eevee = {
+        "hp" : 160,
+        "attack" : 8,
+        "counteratt" : 40,
+    };
+
+    var mareep = {
+        "hp" : 200,
+        "attack" : 10,
+        "counteratt" : 50,
+    };
+
+    var vulpix = {
+        "hp" : 220,
+        "attack" : 11,
+        "counteratt" : 55,
+    };
+
+
+
+
+}
+
+
+// ------------------------------------- vars & reset section finito -------------------------------------- //
+
+// ------------------------------- section for declaring functions -------------------------------- //
+
+function bigWin() {
+    if (wins == 4) {
+        alert("YOU HAVE DEFEATED ALL ENEMY POKEMON!!");
+        // offerPlayAgain;
+    }
 };
 
-var eevee = {
-    "hp" : 160,
-    "attack" : 8,
-    "counteratt" : 40,
-};
+function winCondition() {
+    if // userPoke's HP is
+    wins++;
+    // chooseNextOpponent;
+}
 
-var mareep = {
-    "hp" : 200,
-    "attack" : 10,
-    "counteratt" : 50,
-};
+function loseCondition() {
+    if // userPoke's HP is <= 0,
+    losses++;
+    alert("You've lost! Choose a new pokemon to play again!");
+    // chooseNextOpponent;
+}
 
-var vulpix = {
-    "hp" : 220,
-    "attack" : 11,
-    "counteratt" : 55,
-};
+
+
+
+// ----------------------------- section for declaring functions finito ---------------------------- //
+
+// ---------------------------------- section for calling functions --------------------------------- //
+
+bigWin();
+
+// ------------------------------ section for calling functions finito ------------------------------ //
 
