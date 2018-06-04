@@ -52,16 +52,16 @@ function resetEverything() {
     numberofenemies = 3;
 
     for (var i = 0; i < pokeArray.length; i++) {
-//        choices += "<div id=" + enemyArray[i].id + " class='btn character text-center' value=" + enemyArray[i].id +
-//        "><img class='houses' src=" + enemyArray[i].pic + " alt=" + enemyArray[i].name + "><br> HP: " + enemyArray[i].hitPoints +
-//        "<br> AP: " + enemyArray[i].attackPower + " </div>";
+       pokeChoices += "<div id=" + pokeArray[i].name + " class='btn character text-center' value=" + pokeArray[i].name +
+       "><img class='pokes' src=" + pokeArray[i].frontpic + " alt=" + pokeArray[i].name + "><br> HP: " + pokeArray[i].hp +
+       "<br> Attack: " + pokeArray[i].attack + " </div>";
         console.log("this bit is working");
         };
 
-    $("#fourwholepokes").html("isitworking");
+    $("#fourwholepokes").html(pokeChoices);
     $("#instructions").html("Click a pokemon");
-
     $('#battledescrip').html(""); // this cleans out the battle-description box
+    alert("this has run through the entire resetEverything function");
     
 
 //  choosePoke();    
@@ -72,17 +72,17 @@ function resetEverything() {
 
 // ------------------------------- section for declaring functions -------------------------------- //
 
+resetEverything();
 
+// function choosePoke() {
 
-function choosePoke() {
+// };
 
-};
-
-function pokeEnemies() {
-    if (pokeChoices.length < 4) {
-        $("#enemypokes").push("thesearebadguys");
-    }
-};
+// function pokeEnemies() {
+//     if (pokeChoices.length < 4) {
+//         $("#enemypokes").push("thesearebadguys");
+//     }
+// };
 
 
 // function winCondition() {
@@ -122,9 +122,7 @@ function pokeEnemies() {
 
 // ---------------------------------- section for calling functions --------------------------------- //
 
-// -------------- not sure i want to use this @@@ $("#fourwholepokes").html(pokeChoices);
-
-
+// $("#restartgame").on("click", function offerPlayAgain());
 
 // choosePoke();
 // pokeEnemies();

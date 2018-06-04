@@ -3,3 +3,7 @@ body {
     background-repeat: no-repeat;
     background-size: auto;
 }
+
+.pokes {
+    width: 100px;
+}
