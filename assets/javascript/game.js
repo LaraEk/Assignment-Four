@@ -3,9 +3,14 @@
 var userPoke; // I'm not sure if these should be empty or if they should be objects???
 var oppPoke; // I'm not sure if these should be empty or if they should be objects???
 var pokeChoices; // this will be an empty array that will fill with pokemon - 4 before game begins; 3 once userPoke is chosen
+var pokeArray; // this is the initial array of pokemon-objects
+var chosePoke; // this is the var for a user-poke chosen or not
+var choseEnemy; // this is the var for an enemy-poke being chosen or not 
+var numberofenemies; // how many enemies exist
+// var rounds; -- I don't think I need this one.  I dunno, dude, maybe I might
 
 var wins = 0;
-var losses = 1;
+var losses = 0;
 
 
 function resetEverything() {
@@ -47,13 +52,20 @@ function resetEverything() {
     numberofenemies = 3;
 
     for (var i = 0; i < pokeArray.length; i++) {
-        pokeChoices.push (pokeArray.name);
-        console.log(pokeChoices);
-		};
+//        choices += "<div id=" + enemyArray[i].id + " class='btn character text-center' value=" + enemyArray[i].id +
+//        "><img class='houses' src=" + enemyArray[i].pic + " alt=" + enemyArray[i].name + "><br> HP: " + enemyArray[i].hitPoints +
+//        "<br> AP: " + enemyArray[i].attackPower + " </div>";
+        console.log("this bit is working");
+        };
+
+    $("#fourwholepokes").html("isitworking");
+    $("#instructions").html("Click a pokemon");
+
+    $('#battledescrip').html(""); // this cleans out the battle-description box
     
 
 //  choosePoke();    
-};
+}; // this is the closing curly for resetEverything
 
 
 // ------------------------------------- vars & reset section finito -------------------------------------- //
@@ -64,40 +76,58 @@ function resetEverything() {
 
 function choosePoke() {
 
-}
+};
+
+function pokeEnemies() {
+    if (pokeChoices.length < 4) {
+        $("#enemypokes").push("thesearebadguys");
+    }
+};
 
 
 // function winCondition() {
-//     if // userPoke's HP is
-//     wins++;
-//     // chooseNextOpponent;
-// }
+//      if (-----------) userPoke's HP is) {
+//      wins++;
+//      chooseNextOpponent();
+//      }
+// };
 
 // function loseCondition() {
-//     if (losses == 1) {
-//         // userPoke's HP is <= 0,
+//     if (------------userPoke's HP is <= 0) {
 //         losses++;
 //         alert("You've lost! Choose a new pokemon to play again!");
-//         // chooseNextOpponent; 
+//         chooseNextOpponent(); 
 //     }
-// }
+// };
 
 // function bigWin() {
 //     if (wins == 4) {
 //         alert("YOU HAVE DEFEATED ALL ENEMY POKEMON!!");
-//         // offerPlayAgain;
+//         offerPlayAgain();
 //     }
+// };
+
+// function offerPlayAgain() {
+//     if (confirm("Play again?")) {
+//         resetEverything();
+//     } else {
+//         alert("Bye!");
+//     }
+// }
+
+// function resetEverything() {
+
 // };
 // ----------------------------- section for declaring functions finito ---------------------------- //
 
 // ---------------------------------- section for calling functions --------------------------------- //
 
-$("#fourwholepokes").html(pokeChoices);
+// -------------- not sure i want to use this @@@ $("#fourwholepokes").html(pokeChoices);
 
 
 
 // choosePoke();
-
+// pokeEnemies();
 
 
 // bigWin();            // this function works, but I am commenting it out during building/testing
