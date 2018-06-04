@@ -3,8 +3,18 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mini Pokemon Battle Game</title>
+
   <link rel="icon" type="image/png" href="assets/images/Pokeball.PNG" />
+    <!-- Bootstrap rel links below: all three of them-->
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- End Boostrap rel links -->
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -14,7 +24,26 @@
 
 <body style="background-image: url(assets/images/emeraldbgsmall.png)">
 
-<!-- note to self - put pokebanner! -->
+  <div class="container-fluid">
+    <h1>texty text</h1>
+    <div id="winsdiv" class="text-center">Wins:</div>  |  <div id="lossesdiv" class="text-center">Losses:</div>
+      <div class="row">
+        <h2 id="todo" class="text-center">right now, this is where directions go.  later, I want them moved down.</h2>
+        <div id="fourwholepokes" class="text-center">this is where four whole pokes go</div>
+      </div>
+      <div class="row theCenter text-center">
+        <div id="userChosenPoke" class="col-md-4"></div>
+        <div class="col-md-4">
+          <button id="attackbutton" type="button" class="btn btn-danger" value=attack>Attack</button><br><br>
+          <button id="restartbutton" type="button" class="btn btn-info" value=restart>Restart</button><br><br>
+          <div id="battledescrip"></div><br>
+        </div>
+        <div id="userChosenEnemy" class="col-md-4"></div>
+      </div>
+    </div>
+    
+
+  <!-- note to self - put pokebanner! -->
 
   <div id="restartgame"><button>Restart Game</button></div>
   Wins: <div id="winsdiv"></div>
