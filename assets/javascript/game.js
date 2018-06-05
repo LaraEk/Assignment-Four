@@ -1,4 +1,5 @@
-// --------------------------------- section for vars and reset ----------------------------------- //
+$(document).ready(function() {
+    // --------------------------------- section for vars and reset ----------------------------------- //
 
 var userPoke = 0; // I'm not sure if these should be empty or if they should be objects???
 var oppPoke = 0; // I'm not sure if these should be empty or if they should be objects???
@@ -83,7 +84,7 @@ choosePoke();
 
 // ------------------------------- section for declaring functions -------------------------------- //
 
-// something about this section of code isn't working.  I need to find out why.
+// something about this section of code isn't working.  I need to find out why. ------------------------------------ To Ask In Class
 function choosePoke() {
     $(".pokes").on("click", function() {
         if(chosePoke = false) {
@@ -127,8 +128,66 @@ function battletime() {
         pokeArray[userPoke].name + "'s attack power has increased by " + rounds + "!";
     $('#battledescrip').html(description);
 }
-// this is where I can put poke-specific messages for each
+// this is where I want to put poke-specific messages for each
 // eg: if id = eevee, [eevee] used (etc)
+
+
+
+// this is where THE ACTION HAPPENS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    $('#attack').on("click", function() {
+        if(!chosePoke) {
+            $('#battledescrip').html("You can't pokebattle without a pokemon!");
+        }
+        else if(!choseEnemy) {
+            $('#battledescrip').html("Choose your enemy pokemon!");
+        }
+        else if(chosePoke && choseEnemy) {
+            rounds++;
+            pokeArray[oppPoke].hp  = enemyArray[opponentChar].hitPoints - pokeArray[userPoke].att;
+            pokeArray[userPoke].hp = pokeArray[oppPoke].hp - pokeArray[oppPoke].att;
+
+
+            if(pokeArray[oppPoke].hp < 0) {
+                numberofenemies--;
+                if(numberofenemies > 0) {
+                    $(".yourPoke").remove();
+                    $('#battledescrip').html(pokeArray[oppPoke].name + " has fainted!");
+                    $("#instructions").html("Who will you duel next?");
+                    choseEnemy = false;
+                }
+                else {
+                    battletime();
+                    alert("You're the Pokemon Master!'");
+                    wins++;
+                    $('#winsdiv').html(wins);
+                    offerPlayAgain();
+                }
+                
+            }
+            else if(pokeArray[userPoke].hp < 0) {
+                battletime();
+                alert("Choose a new pokemon to play again!");
+                loses++;
+                $('#lossesdiv').html(losses);
+                offerPlayAgain();
+            }
+            else {
+                battletime();
+                standOnBattleGround();
+            }
+
+            pokeArray[userPoke].att = pokeArray[userPoke].att + rounds;
+        }
+    });
+
+    $('#restart').on("click", function(){
+        resetEverything();
+    });
+
+
+
+
 
 
 // function pokeEnemies() {
@@ -160,13 +219,13 @@ function battletime() {
 //     }
 // };
 
-// function offerPlayAgain() {
-//     if (confirm("Play again?")) {
-//         resetEverything();
-//     } else {
-//         alert("Bye!");
-//     }
-// }
+function offerPlayAgain() {
+    if (confirm("Play again?")) {
+        resetEverything();
+    } else {
+        alert("Bye!");
+    }
+}
 
 
 // ----------------------------- section for declaring functions finito ---------------------------- //
@@ -192,3 +251,4 @@ choosePoke();
 
 // ------------------------------ section for calling functions finito ------------------------------ //
 
+}); // to Document Ready Function
