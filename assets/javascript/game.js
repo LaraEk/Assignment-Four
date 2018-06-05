@@ -3,12 +3,12 @@
 var userPoke = 0; // I'm not sure if these should be empty or if they should be objects???
 var oppPoke = 0; // I'm not sure if these should be empty or if they should be objects???
 
-var pokeChoices; // this will be an empty array that will fill with pokemon - 4 before game begins; 3 once userPoke is chosen
-var pokeArray; // this is the initial array of pokemon-objects
-var chosePoke; // this is the var for a user-poke chosen or not
-var choseEnemy; // this is the var for an enemy-poke being chosen or not 
+var pokeChoices = []; // this will be an empty array that will fill with pokemon - 4 before game begins; 3 once userPoke is chosen
+var pokeArray = []; // this is the initial array of pokemon-objects
+var chosePoke; // this is the var for a user-poke chosen or not ---------- boolean
+var choseEnemy; // this is the var for an enemy-poke being chosen or not ---------- boolean
 var numberofenemies; // how many enemies exist
-// var rounds; -- I don't think I need this one.  I dunno, dude, maybe I might
+var rounds = 10; 
 
 var wins = 0;
 var losses = 0;
@@ -17,6 +17,12 @@ var losses = 0;
 function resetEverything() {
     userPoke;
     oppPoke;
+    chosePoke = false;
+    choseEnemy = false;
+    numberofenemies = 3;
+
+    $('.myPoke').remove();
+    $('.yourPoke').remove(); //note: 'fighting'
 
     pokeChoices = [];
     pokeArray = [
@@ -54,12 +60,6 @@ function resetEverything() {
             "backpic" : 'assets/images/vulpixback.png',
         } ]; // this is the closing ] for pokeArray
 
-    chosePoke = false;
-    choseEnemy = false;
-    numberofenemies = 3;
-
-    $('.myPoke').remove();
-    $('.yourPoke').remove(); //note: 'fighting'
     
     for (var i = 0; i < pokeArray.length; i++) {
        pokeChoices += "<div id=" + pokeArray[i].name + " class='btn character text-center' value=" + pokeArray[i].name +
@@ -83,9 +83,31 @@ choosePoke();
 
 // ------------------------------- section for declaring functions -------------------------------- //
 
-resetEverything();      // this function works
+// something about this section of code isn't working.  I need to find out why.
+function choosePoke() {
+    $(".pokes").on("click", function() {
+        if(chosePoke = false) {
+            userPoke = $(this).attr('id');
+            $("#userChosenPoke").append(this);
+            $(this).addClass("myPoke");
+            chosePoke = true;
+            console.log("user has chosen a poke!");
+            $('#battledescrip').html("");
+            $("#instructions").html("Now choose the first pokemon you'd like to battle!");
+        } else if(chosePoke = true && !choseEnemy && userPoke !== $(this).attr('id')) {	
+            oppPoke = $(this).attr('id');
+            $("#userChosenEnemy").append(this);
+            $(this).addClass("yourPoke");    
+            choseEnemy = true;
+            console.log("user has chosen first enemy!")
+            $('#battledescrip').html("");
+            $("#instructions").html("Your pokebattle is about to begin! Click attack!");
+        }
+     }); // to onclick
+};
 
 function standOnBattleGround() {
+    if(chosePoke = true) {
     var myPoke = "<div id=" + pokeArray[userPoke].id + " class='btn character text-center myPoke' value=" + pokeArray[userPoke].id +
     "><img class='pokes' src=" + pokeArray[userPoke].backpic + " alt=" + pokeArray[userPoke].name + "><br> HP: " + pokeArray[userPoke].hp +
     "<br> Attack: " + pokeArray[userPoke].att + "<br> Counter-Attack:" + pokeArray[userPoke].counteratt + " </div>";
@@ -94,32 +116,20 @@ function standOnBattleGround() {
     "<br> Attack: " + pokeArray[oppPoke].att + "<br> Counter-Attack:" + pokeArray[oppPoke].counteratt + " </div>";
     $('#userChosenPoke').html(myPoke);
     $('#userChosenEnemy').html(yourPoke);
-    console.log("user has chosen a poke!")
+    console.log("pokes standing on battleground!")
+    }
 }
 
-standOnBattleGround();
 
-function choosePoke() {
-    $(".pokes").on("click", function() {
-        if(chosePoke = false) {
-            userPoke = $(this).attr('name');
-            $("#userChosenPoke").append(this);
-            $(this).addClass("myPoke");
-            chosePoke = true;
-            $('#battledescrip').html("");
-            $("#instructions").html("Now choose the first pokemon you'd like to battle!");
-        } else if(!chosePoke && choseEnemy && userPoke !== $(this).attr('name')) {	
-            opponentChar = $(this).attr('name');
-            $("#userChosenEnemy").append(this);
-            $(this).addClass("yourPoke");    
-            choseEnemy = true;
-            $('#battledescrip').html("");
-            $("#instructions").html("Your pokebattle is about to begin! Click attack!");
-        }
-     }); // to onclick
-};
+function battletime() {
+    var description = pokeArray[userPoke].name + " attacks " + pokeArray[oppPoke].name + " for " + pokeArray[oppPoke].att + " damage!<br>" +
+        pokeArray[oppPoke].name + " counter attacks for " + pokeArray[oppPoke].counteratt + " damage!<br>" +
+        pokeArray[userPoke].name + "'s attack power has increased by " + rounds + "!";
+    $('#battledescrip').html(description);
+}
+// this is where I can put poke-specific messages for each
+// eg: if id = eevee, [eevee] used (etc)
 
-choosePoke();
 
 // function pokeEnemies() {
 //     if (pokeChoices.length < 4) {
@@ -164,6 +174,10 @@ choosePoke();
 // ---------------------------------- section for calling functions --------------------------------- //
 
 // $("#restartgame").on("click", function offerPlayAgain());
+
+resetEverything();      // this function works
+choosePoke();
+// standOnBattleGround();
 
 
 
