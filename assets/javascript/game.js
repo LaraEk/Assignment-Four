@@ -1,7 +1,7 @@
 // --------------------------------- section for vars and reset ----------------------------------- //
 
-var userPoke; // I'm not sure if these should be empty or if they should be objects???
-var oppPoke; // I'm not sure if these should be empty or if they should be objects???
+var userPoke = 0; // I'm not sure if these should be empty or if they should be objects???
+var oppPoke = 0; // I'm not sure if these should be empty or if they should be objects???
 
 var pokeChoices; // this will be an empty array that will fill with pokemon - 4 before game begins; 3 once userPoke is chosen
 var pokeArray; // this is the initial array of pokemon-objects
@@ -22,6 +22,7 @@ function resetEverything() {
     pokeArray = [
         {
             "name" : "bulbasaur",
+            id : 0,
             "hp" : 100,
             "attack" : 5,
             "counteratt" : 25,
@@ -29,6 +30,7 @@ function resetEverything() {
             "backpic" : 'assets/images/bulbaback.png',
         }, {
             "name" : "eevee",
+            id : 1,
             "hp" : 160,
             "attack" : 8,
             "counteratt" : 40,
@@ -36,6 +38,7 @@ function resetEverything() {
             "backpic" : 'assets/images/eeveeback.png',
         }, {
             "name" : "mareep",
+            id : 2,
             "hp" : 200,
             "attack" : 10,
             "counteratt" : 50,
@@ -43,6 +46,7 @@ function resetEverything() {
             "backpic" : 'assets/images/mareepback.png',
         }, {
             "name" : "vulpix",
+            id : 3,
             "hp" : 220,
             "attack" : 11,
             "counteratt" : 55,
@@ -82,10 +86,10 @@ choosePoke();
 resetEverything();      // this function works
 
 function standOnBattleGround() {
-    var myPoke = "<div id=" + pokeArray[userPoke].name + " class='btn character text-center myPoke' value=" + pokeArray[userPoke].name +
+    var myPoke = "<div id=" + pokeArray[userPoke].id + " class='btn character text-center myPoke' value=" + pokeArray[userPoke].id +
     "><img class='pokes' src=" + pokeArray[userPoke].backpic + " alt=" + pokeArray[userPoke].name + "><br> HP: " + pokeArray[userPoke].hp +
     "<br> Attack: " + pokeArray[userPoke].att + "<br> Counter-Attack:" + pokeArray[userPoke].counteratt + " </div>";
-    var yourPoke = "<div id=" + pokeArray[oppPoke].name + " class='btn character text-center yourPoke' value=" + pokeArray[userPoke].name +
+    var yourPoke = "<div id=" + pokeArray[oppPoke].id + " class='btn character text-center yourPoke' value=" + pokeArray[oppPoke].id +
     "><img class='pokes' src=" + pokeArray[oppPoke].frontpic + " alt=" + pokeArray[oppPoke].name + "><br> HP: " + pokeArray[oppPoke].hp +
     "<br> Attack: " + pokeArray[oppPoke].att + "<br> Counter-Attack:" + pokeArray[oppPoke].counteratt + " </div>";
     $('#userChosenPoke').html(myPoke);
