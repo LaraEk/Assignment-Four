@@ -2,6 +2,7 @@
 
 var userPoke; // I'm not sure if these should be empty or if they should be objects???
 var oppPoke; // I'm not sure if these should be empty or if they should be objects???
+
 var pokeChoices; // this will be an empty array that will fill with pokemon - 4 before game begins; 3 once userPoke is chosen
 var pokeArray; // this is the initial array of pokemon-objects
 var chosePoke; // this is the var for a user-poke chosen or not
@@ -14,6 +15,8 @@ var losses = 0;
 
 
 function resetEverything() {
+    userPoke;
+    oppPoke;
 
     pokeChoices = [];
     pokeArray = [
@@ -51,20 +54,24 @@ function resetEverything() {
     choseEnemy = false;
     numberofenemies = 3;
 
+    $('.myPoke').remove();
+    $('.yourPoke').remove(); //note: 'fighting'
+    
     for (var i = 0; i < pokeArray.length; i++) {
        pokeChoices += "<div id=" + pokeArray[i].name + " class='btn character text-center' value=" + pokeArray[i].name +
        "><img class='pokes' src=" + pokeArray[i].frontpic + " alt=" + pokeArray[i].name + "><br> HP: " + pokeArray[i].hp +
-       "<br> Attack: " + pokeArray[i].attack + " </div>";
+       "<br> Attack: " + pokeArray[i].attack + "<br> Counter-Attack: " + pokeArray[i].counteratt + " </div>";
         console.log("this bit is working");
-        };
+        };                      
+                            // Note to self: I love how this created a div in js! brilliant!  This is going in my toolbox.
 
     $("#fourwholepokes").html(pokeChoices);
-    $("#instructions").html("Click a pokemon");
+    $("#instructions").html("Choose a starter!");
     $('#battledescrip').html(""); // this cleans out the battle-description box
     alert("this has run through the entire resetEverything function");
     
+choosePoke();    
 
-//  choosePoke();    
 }; // this is the closing curly for resetEverything
 
 
@@ -72,11 +79,43 @@ function resetEverything() {
 
 // ------------------------------- section for declaring functions -------------------------------- //
 
-resetEverything();
+resetEverything();      // this function works
 
-// function choosePoke() {
+function standOnBattleGround() {
+    var myPoke = "<div id=" + pokeArray[userPoke].name + " class='btn character text-center myPoke' value=" + pokeArray[userPoke].name +
+    "><img class='pokes' src=" + pokeArray[userPoke].backpic + " alt=" + pokeArray[userPoke].name + "><br> HP: " + pokeArray[userPoke].hp +
+    "<br> Attack: " + pokeArray[userPoke].att + "<br> Counter-Attack:" + pokeArray[userPoke].counteratt + " </div>";
+    var yourPoke = "<div id=" + pokeArray[oppPoke].name + " class='btn character text-center yourPoke' value=" + pokeArray[userPoke].name +
+    "><img class='pokes' src=" + pokeArray[oppPoke].frontpic + " alt=" + pokeArray[oppPoke].name + "><br> HP: " + pokeArray[oppPoke].hp +
+    "<br> Attack: " + pokeArray[oppPoke].att + "<br> Counter-Attack:" + pokeArray[oppPoke].counteratt + " </div>";
+    $('#userChosenPoke').html(myPoke);
+    $('#userChosenEnemy').html(yourPoke);
+    console.log("user has chosen a poke!")
+}
 
-// };
+standOnBattleGround();
+
+function choosePoke() {
+    $(".pokes").on("click", function() {
+        if(chosePoke = false) {
+            userPoke = $(this).attr('name');
+            $("#userChosenPoke").append(this);
+            $(this).addClass("myPoke");
+            chosePoke = true;
+            $('#battledescrip').html("");
+            $("#instructions").html("Now choose the first pokemon you'd like to battle!");
+        } else if(!chosePoke && choseEnemy && userPoke !== $(this).attr('name')) {	
+            opponentChar = $(this).attr('name');
+            $("#userChosenEnemy").append(this);
+            $(this).addClass("yourPoke");    
+            choseEnemy = true;
+            $('#battledescrip').html("");
+            $("#instructions").html("Your pokebattle is about to begin! Click attack!");
+        }
+     }); // to onclick
+};
+
+choosePoke();
 
 // function pokeEnemies() {
 //     if (pokeChoices.length < 4) {
@@ -115,14 +154,14 @@ resetEverything();
 //     }
 // }
 
-// function resetEverything() {
 
-// };
 // ----------------------------- section for declaring functions finito ---------------------------- //
 
 // ---------------------------------- section for calling functions --------------------------------- //
 
 // $("#restartgame").on("click", function offerPlayAgain());
+
+
 
 // choosePoke();
 // pokeEnemies();
