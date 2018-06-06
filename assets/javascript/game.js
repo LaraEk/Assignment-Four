@@ -1,23 +1,25 @@
 $(document).ready(function() {
-    // --------------------------------- section for vars and reset ----------------------------------- //
+// ------------------------------------------------ vars and reset ---------------------------------------------------- //
 
-var userPoke = 0; // I'm not sure if these should be empty or if they should be objects???
-var oppPoke = 0; // I'm not sure if these should be empty or if they should be objects???
+var userPoke = {}; // 
+var oppPoke = {}; //
 
 var pokeChoices = []; // this will be an empty array that will fill with pokemon - 4 before game begins; 3 once userPoke is chosen
 var pokeArray = []; // this is the initial array of pokemon-objects
-var chosePoke; // this is the var for a user-poke chosen or not ---------- boolean
-var choseEnemy; // this is the var for an enemy-poke being chosen or not ---------- boolean
+
+var chosePoke; // this is the var for a user-poke being chosen or not ---------- boolean --------- ???set it yet or no?
+var choseEnemy; // this is the var for an enemy-poke being chosen or not ---------- boolean --------- ???set it yet or no?
+
 var numberofenemies; // how many enemies exist
-var rounds = 10; 
+var rounds = 10; // number by which to increment att.  (may fiddle with this as testing continues!)
 
 var wins = 0;
 var losses = 0;
 
 
 function resetEverything() {
-    userPoke;
-    oppPoke;
+    userPoke = {};
+    oppPoke = {};
     chosePoke = false;
     choseEnemy = false;
     numberofenemies = 3;
@@ -78,28 +80,28 @@ function resetEverything() {
 choosePoke();    
 
 }; // this is the closing curly for resetEverything
+// ------------------------------------------------ vars and reset section complete ---------------------------------------------------- //
 
 
-// ------------------------------------- vars & reset section finito -------------------------------------- //
 
-// ------------------------------- section for declaring functions -------------------------------- //
+// ----------------------------------------------- section for declaring functions -------------------------------------------------- //
 
 // something about this section of code isn't working.  I need to find out why. ------------------------------------ To Ask In Class
 function choosePoke() {
     $(".pokes").on("click", function() {
-        if(chosePoke = false) {
+        if(chosePoke == false) {
             userPoke = $(this).attr('id');
             $("#userChosenPoke").append(this);
             $(this).addClass("myPoke");
-            chosePoke = true;
+            chosePoke == true;
             console.log("user has chosen a poke!");
             $('#battledescrip').html("");
             $("#instructions").html("Now choose the first pokemon you'd like to battle!");
-        } else if(chosePoke = true && !choseEnemy && userPoke !== $(this).attr('id')) {	
+        } else if(chosePoke == true && !choseEnemy && userPoke !== $(this).attr('id')) {	
             oppPoke = $(this).attr('id');
             $("#userChosenEnemy").append(this);
             $(this).addClass("yourPoke");    
-            choseEnemy = true;
+            choseEnemy == true;
             console.log("user has chosen first enemy!")
             $('#battledescrip').html("");
             $("#instructions").html("Your pokebattle is about to begin! Click attack!");
@@ -108,7 +110,7 @@ function choosePoke() {
 };
 
 function standOnBattleGround() {
-    if(chosePoke = true) {
+    if(chosePoke == true) {
     var myPoke = "<div id=" + pokeArray[userPoke].id + " class='btn character text-center myPoke' value=" + pokeArray[userPoke].id +
     "><img class='pokes' src=" + pokeArray[userPoke].backpic + " alt=" + pokeArray[userPoke].name + "><br> HP: " + pokeArray[userPoke].hp +
     "<br> Attack: " + pokeArray[userPoke].att + "<br> Counter-Attack:" + pokeArray[userPoke].counteratt + " </div>";
@@ -130,22 +132,23 @@ function battletime() {
 }
 // this is where I want to put poke-specific messages for each
 // eg: if id = eevee, [eevee] used (etc)
+// ----------------------------------------------- section for declaring functions -------------------------------------------------- //
 
 
 
-// this is where THE ACTION HAPPENS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// ----------------------------------------------- section for MAKE IT SO -------------------------------------------------- //
 
-    $('#attack').on("click", function() {
-        if(!chosePoke) {
+    $('#attackbutton').on("click", function() {console.log(chosePoke);console.log(choseEnemy);
+        if(chosePoke == false) {
             $('#battledescrip').html("You can't pokebattle without a pokemon!");
         }
-        else if(!choseEnemy) {
+        else if(choseEnemy == false) {
             $('#battledescrip').html("Choose your enemy pokemon!");
         }
-        else if(chosePoke && choseEnemy) {
+        else if(chosePoke && choseEnemy) { console.log("attacking");
             rounds++;
-            pokeArray[oppPoke].hp  = enemyArray[opponentChar].hitPoints - pokeArray[userPoke].att;
-            pokeArray[userPoke].hp = pokeArray[oppPoke].hp - pokeArray[oppPoke].att;
+            pokeArray[oppPoke].hp  = pokeArray[oppPoke].hp - pokeArray[userPoke].att;
+            pokeArray[userPoke].hp = pokeArray[userPoke].hp - pokeArray[oppPoke].att;
 
 
             if(pokeArray[oppPoke].hp < 0) {
@@ -154,7 +157,7 @@ function battletime() {
                     $(".yourPoke").remove();
                     $('#battledescrip').html(pokeArray[oppPoke].name + " has fainted!");
                     $("#instructions").html("Who will you duel next?");
-                    choseEnemy = false;
+                    choseEnemy == false;
                 }
                 else {
                     battletime();
@@ -186,8 +189,30 @@ function battletime() {
     });
 
 
+function offerPlayAgain() {
+    if (confirm("Play again?")) {
+        resetEverything();
+    } else {
+        alert("Bye!");
+    }
+}
+
+resetEverything();      // this function works
+choosePoke();
 
 
+    // ----------------------------------------------- section for MAKE IT SO finito -------------------------------------------------- //
+
+}); // to Document Ready Function
+
+// ---------------------------------------------------------------------------------------------------------------------------------------//
+// ---------------------------------------------------------------------------------------------------------------------------------------//
+// ---------------------------------------------------------------------------------------------------------------------------------------//
+// ---------------------------------------------------------------------------------------------------------------------------------------//
+// ---------------------------------------------------------------------------------------------------------------------------------------//
+
+
+// ----------------------------------------------------------- NOTES BELOW -------------------------------------------------------------//
 
 
 // function pokeEnemies() {
@@ -219,14 +244,6 @@ function battletime() {
 //     }
 // };
 
-function offerPlayAgain() {
-    if (confirm("Play again?")) {
-        resetEverything();
-    } else {
-        alert("Bye!");
-    }
-}
-
 
 // ----------------------------- section for declaring functions finito ---------------------------- //
 
@@ -234,8 +251,6 @@ function offerPlayAgain() {
 
 // $("#restartgame").on("click", function offerPlayAgain());
 
-resetEverything();      // this function works
-choosePoke();
 // standOnBattleGround();
 
 
@@ -251,4 +266,3 @@ choosePoke();
 
 // ------------------------------ section for calling functions finito ------------------------------ //
 
-}); // to Document Ready Function
