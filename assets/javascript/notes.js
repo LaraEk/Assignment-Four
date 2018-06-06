@@ -1,47 +1,88 @@
-function attachCharacterOnClick() {
-    $('.character').on("click", function(){
-        if(!haveCharacter) {	//Picking your character
-            myChar = $(this).attr('id');
-            $("#myguy").append(this);
-            $(this).addClass("hero");
-
-            haveCharacter = true;
-            $('#whathappens').html("");
-            $("#todo").html("Choose your opponent!");
+    $('#attackbutton').on("click", function() {console.log(myPoke);console.log(yourPoke);
+        if(chosePoke == false) {
+            $('#battledescrip').html("You can't pokebattle without a pokemon!");
         }
-        //You have a character and you're picking your opponent
-        else if(!haveAttacker && haveCharacter && myChar !== $(this).attr('id')) {	
-            opponentChar = $(this).attr('id');
-            $("#enemy").append(this);
-            $(this).addClass("fighting");
+        else if(choseEnemy == false) {
+            $('#battledescrip').html("Choose your enemy pokemon!");
+        }
+        else if(chosePoke && choseEnemy) { console.log("attacking");
+            rounds++;
+            pokeArray[oppPoke].hp  = pokeArray[oppPoke].hp - pokeArray[userPoke].att;
+            pokeArray[userPoke].hp = pokeArray[userPoke].hp - pokeArray[oppPoke].att;
 
-            haveAttacker = true;
-            $('#whathappens').html("");
-            $("#todo").html("Keep clicking attack to duel!");
+
+            if(pokeArray[oppPoke].hp < 0) {
+                numberofenemies--;
+                if(numberofenemies > 0) {
+                    $(".yourPoke").remove();
+                    $('#battledescrip').html(pokeArray[oppPoke].name + " has fainted!");
+                    $("#instructions").html("Who will you duel next?");
+                    choseEnemy == false;
+                }
+                else {
+                    battletime();
+                    alert("You're the Pokemon Master!'");
+                    wins++;
+                    $('#winsdiv').html(wins);
+                    offerPlayAgain();
+                }
+                
+            }
+            else if(pokeArray[userPoke].hp < 0) {
+                battletime();
+                alert("Choose a new pokemon to play again!");
+                loses++;
+                $('#lossesdiv').html(losses);
+                offerPlayAgain();
+            }
+            else {
+                battletime();
+                standOnBattleGround();
+            }
+
+            pokeArray[userPoke].att = pokeArray[userPoke].att + rounds;
         }
     });
-}
-// -------------------------------------------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------------------------------------------
-$(".character").on("click", function(){
-    // make this char the hero
-    hero = $(this).data("char");
-    showMessage("Now click to choose your first opponent. <br> Your attack gets stronger each time you use it. Choose the order of your opponents wisely.", true);
-    // reassign click events on non-hero characters
-    $(".character").off("click").on("click", function(){
-        setOpponent($(this).data("char"));
-    });
-    // set the enemy boolean on character objects
-    for (var i = 0; i < characters.length; i++) {
-        if (i === hero){
-            characters[i].enemy = false;
-            $(this).detach().appendTo("#hero .charContainer").off("click");
 
-        } else {
-            characters[i].enemy = true;
-        }
-    }
-});
+
+    ~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+
+    <div class="container-fluid text-center"><img src="assets/images/pokelogomed.png" id="logo" /> 
+    <div id="winsdiv" class="text-center">Wins:</div>  |  <div id="lossesdiv" class="text-center">Losses:</div>
+      <div class="row">
+        <div id="fourwholepokes" class="text-center"></div> <!--this is where four whole pokes go-->        
+          <div class="col-md-4">&nbsp;</div>
+          <div class="col-md-4 panel panel-default text-center" id="instructions" style="padding:20px"></h2> <!--right now, this is where directions go.  later, I want them moved down.--> 
+          <div class="col-md-4">&nbsp;</div>       
+      </div> <!-- this is to the thrice-col-4-md div-->
+    </div>
+
+      <div class="row theCenter text-center">
+        <div class="col-md-4"></div>
+        <div class="col-md-4"> <!-- I want to fix this so they show up on the field! -->
+          <button id="attackbutton" type="button" class="btn btn-danger" value=attack>Attack</button><br><br>
+          <button id="restartbutton" type="button" class="btn btn-info" value=restart>Restart</button><br><br>
+          <div id="battledescrip"></div><br>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+    </div>
+
+    <div class="row theCenter text-center">
+      <div class="col-md-3">&nbsp;</div>
+      <div class="col-md-2" id="userChosenPoke"></div>
+      <div class="col-md-2">&nbsp;</div>
+      <div class="col-md-2" id="userChosenEnemy"><p>this is where Enemy Poke should be</p></div>
+      <div class="col-md-3">&nbsp;</div>
+    </div>
+  </div>
+
+
+
+  <!-- note to self - put pokebanner! -->
+
+  <div id="restartgame"><button>Restart Game</button></div>
+  Wins: <div id="winsdiv"></div>
+  Losses: <div id="lossesdiv"></div>
+
+  Enemy pokes:<div id="enemypokes"></div>

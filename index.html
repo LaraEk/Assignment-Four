@@ -24,19 +24,41 @@
 
 <body style="background-image: url(assets/images/emeraldbgsmall.png)">
 
- <div class="container-fluid text-center"><img src="assets/images/pokelogomed.png" id="logo" /> 
-    <div id="winsdiv" class="text-center">Wins:</div>  |  <div id="lossesdiv" class="text-center">Losses:</div>
-      <div class="row">
-        <div id="fourwholepokes" class="text-center"></div> <!--this is where four whole pokes go-->        
-          <div class="col-md-4">&nbsp;</div>
-          <div class="col-md-4 panel panel-default text-center" id="instructions" style="padding:20px"></h2> <!--right now, this is where directions go.  later, I want them moved down.--> 
-          <div class="col-md-4">&nbsp;</div>       
-      </div> <!-- this is to the thrice-col-4-md div-->
-    </div>
+
+  <div class="container-fluid text-center">
+    <img src="assets/images/pokelogomed.png" id="logo" /> 
+  </div>
+
+  <div class="container-fluid text-center">
+    <div class="row">
+      <div id="fourwholepokes" class="text-center"></div> <!--this is where four whole pokes go-->        
+    </div>    
+  </div>
+
+  <div class="container-fluid text-center">
+    <div class="row">
+      <div class="col-md-4">&nbsp;</div>
+      <div class="col-md-4 panel panel-default text-center" id="instructions" style="padding:20px"></h2>
+      <div class="col-md-4">&nbsp;</div>
+    </div>    
+  </div>
+
+  <div class="container-fluid text-center">
+    <div class="row">
+      <div class="col-md-4" id="useChosenPoke"></div>
+      <div class="col-md-4">
+<!--        <button id="attackbutton" type="button" class="btn btn-danger" value=attackbutton>Pokebattle!</button>
+        <button id="restartbutton" type="button" class="btn btn-primary" value=restartbutton>Restart!</button>
+-->      </div>
+      <div class="col-md-4" id="useChosenEnemy"></div>
+    </div>    
+  </div>
+
+<!-- I know that this solution is incredibly janky, but when I make it clean and pretty, my pokemon don't move, and I'm tired of fighting the machine. -->
 
       <div class="row theCenter text-center">
         <div class="col-md-4"></div>
-        <div class="col-md-4"> <!-- I want to fix this so they show up on the field! -->
+        <div class="col-md-4"> 
           <button id="attackbutton" type="button" class="btn btn-danger" value=attack>Attack</button><br><br>
           <button id="restartbutton" type="button" class="btn btn-info" value=restart>Restart</button><br><br>
           <div id="battledescrip"></div><br>
@@ -49,21 +71,18 @@
       <div class="col-md-3">&nbsp;</div>
       <div class="col-md-2" id="userChosenPoke"></div>
       <div class="col-md-2">&nbsp;</div>
-      <div class="col-md-2" id="userChosenEnemy"><p>this is where it should be</p></div>
+      <div class="col-md-2" id="userChosenEnemy"><p></p></div>
       <div class="col-md-3">&nbsp;</div>
     </div>
   </div>
 
 
 
-  <!-- note to self - put pokebanner! -->
+ 
+<center>  Wins: <div id="winsdiv"></div>
+  Losses: <div id="lossesdiv"></div></center>
 
-  <div id="restartgame"><button>Restart Game</button></div>
-  Wins: <div id="winsdiv"></div>
-  Losses: <div id="lossesdiv"></div>
-
-  Enemy pokes:<div id="enemypokes"></div>
-
+ 
   <script type="text/javascript" src="assets/javascript/game.js"></script> <!-- Going to see if moving the js here makes a difference-->
 </body>
 

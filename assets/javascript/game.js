@@ -95,16 +95,14 @@ function choosePoke() {
 
         if(chosePoke == false) {
             userPoke = $(this).attr('id');
+//            userPoke = $(this).attr('backpic');
             $("#userChosenPoke").append(this);
             $(this).addClass("myPoke");
             chosePoke = true;
             console.log("user has chosen a poke!");
             $('#battledescrip').html("");
             $("#instructions").html("Now choose the first pokemon you'd like to battle!");
-        }
-        // else if(chosePoke == true && !choseEnemy && userPoke !== $(this).attr('id'))
-        else
-         {
+        } else {
             oppPoke = $(this).attr('id');
             $("#userChosenEnemy").append(this);
             $(this).addClass("yourPoke");    
@@ -191,7 +189,7 @@ function battletime() {
         }
     });
 
-    $('#restart').on("click", function(){
+    $('#restartbutton').on("click", function(){
         resetEverything();
     });
 
