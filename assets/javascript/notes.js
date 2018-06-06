@@ -1,4 +1,6 @@
-    $('#attackbutton').on("click", function() {console.log(myPoke);console.log(yourPoke);
+// THIS ONE'S A COMPLETE !@#$%^&*(), so I'mma leave it here and try to write my own.
+
+$('#attackbutton').on("click", function() {console.log(myPoke);console.log(yourPoke);
         if(chosePoke == false) {
             $('#battledescrip').html("You can't pokebattle without a pokemon!");
         }
@@ -86,3 +88,22 @@
   Losses: <div id="lossesdiv"></div>
 
   Enemy pokes:<div id="enemypokes"></div>
+
+  // --------------------------------------------------------------------------------------------------------
+
+  // LOOKS LIKE I DON'T NEED THIS FUNCTION AT ALL
+
+  function standOnBattleGround() {
+    if(chosePoke == true) {console.log("I'm on the right track?")
+        userPoke.append()
+    // var myPoke = "<div id=" + pokeArray[userPoke].id + " class='btn character text-center myPoke' value=" + pokeArray[userPoke].id +
+    // "><img class='pokes' src=" + pokeArray[userPoke].backpic + " alt=" + pokeArray[userPoke].name + "><br> HP: " + pokeArray[userPoke].hp +
+    // "<br> Attack: " + pokeArray[userPoke].att + "<br> Counter-Attack:" + pokeArray[userPoke].counteratt + " </div>";
+    // var yourPoke = "<div id=" + pokeArray[oppPoke].id + " class='btn character text-center yourPoke' value=" + pokeArray[oppPoke].id +
+    // "><img class='pokes' src=" + pokeArray[oppPoke].frontpic + " alt=" + pokeArray[oppPoke].name + "><br> HP: " + pokeArray[oppPoke].hp +
+    // "<br> Attack: " + pokeArray[oppPoke].att + "<br> Counter-Attack:" + pokeArray[oppPoke].counteratt + " </div>";
+    $('#userChosenPoke').html(myPoke);
+    $('#userChosenEnemy').html(yourPoke);
+    console.log("pokes standing on battleground!")
+    }
+}

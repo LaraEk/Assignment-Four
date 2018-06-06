@@ -95,7 +95,6 @@ function choosePoke() {
 
         if(chosePoke == false) {
             userPoke = $(this).attr('id');
-//            userPoke = $(this).attr('backpic');
             $("#userChosenPoke").append(this);
             $(this).addClass("myPoke");
             chosePoke = true;
@@ -114,85 +113,6 @@ function choosePoke() {
      }); // to onclick
 };
 
-function standOnBattleGround() {
-    if(chosePoke == true) {
-    var myPoke = "<div id=" + pokeArray[userPoke].id + " class='btn character text-center myPoke' value=" + pokeArray[userPoke].id +
-    "><img class='pokes' src=" + pokeArray[userPoke].backpic + " alt=" + pokeArray[userPoke].name + "><br> HP: " + pokeArray[userPoke].hp +
-    "<br> Attack: " + pokeArray[userPoke].att + "<br> Counter-Attack:" + pokeArray[userPoke].counteratt + " </div>";
-    var yourPoke = "<div id=" + pokeArray[oppPoke].id + " class='btn character text-center yourPoke' value=" + pokeArray[oppPoke].id +
-    "><img class='pokes' src=" + pokeArray[oppPoke].frontpic + " alt=" + pokeArray[oppPoke].name + "><br> HP: " + pokeArray[oppPoke].hp +
-    "<br> Attack: " + pokeArray[oppPoke].att + "<br> Counter-Attack:" + pokeArray[oppPoke].counteratt + " </div>";
-    $('#userChosenPoke').html(myPoke);
-    $('#userChosenEnemy').html(yourPoke);
-    console.log("pokes standing on battleground!")
-    }
-}
-
-
-function battletime() {
-    var description = pokeArray[userPoke].name + " attacks " + pokeArray[oppPoke].name + " for " + pokeArray[oppPoke].att + " damage!<br>" +
-        pokeArray[oppPoke].name + " counter attacks for " + pokeArray[oppPoke].counteratt + " damage!<br>" +
-        pokeArray[userPoke].name + "'s attack power has increased by " + rounds + "!";
-    $('#battledescrip').html(description);
-}
-// this is where I want to put poke-specific messages for each
-// eg: if id = eevee, [eevee] used (etc)
-// ----------------------------------------------- section for declaring functions -------------------------------------------------- //
-
-
-
-// ----------------------------------------------- section for MAKE IT SO -------------------------------------------------- //
-
-    $('#attackbutton').on("click", function() {console.log(myPoke);console.log(yourPoke);
-        if(chosePoke == false) {
-            $('#battledescrip').html("You can't pokebattle without a pokemon!");
-        }
-        else if(choseEnemy == false) {
-            $('#battledescrip').html("Choose your enemy pokemon!");
-        }
-        else if(chosePoke && choseEnemy) { console.log("attacking");
-            rounds++;
-            pokeArray[oppPoke].hp  = pokeArray[oppPoke].hp - pokeArray[userPoke].att;
-            pokeArray[userPoke].hp = pokeArray[userPoke].hp - pokeArray[oppPoke].att;
-
-
-            if(pokeArray[oppPoke].hp < 0) {
-                numberofenemies--;
-                if(numberofenemies > 0) {
-                    $(".yourPoke").remove();
-                    $('#battledescrip').html(pokeArray[oppPoke].name + " has fainted!");
-                    $("#instructions").html("Who will you duel next?");
-                    choseEnemy == false;
-                }
-                else {
-                    battletime();
-                    alert("You're the Pokemon Master!'");
-                    wins++;
-                    $('#winsdiv').html(wins);
-                    offerPlayAgain();
-                }
-                
-            }
-            else if(pokeArray[userPoke].hp < 0) {
-                battletime();
-                alert("Choose a new pokemon to play again!");
-                loses++;
-                $('#lossesdiv').html(losses);
-                offerPlayAgain();
-            }
-            else {
-                battletime();
-                standOnBattleGround();
-            }
-
-            pokeArray[userPoke].att = pokeArray[userPoke].att + rounds;
-        }
-    });
-
-    $('#restartbutton').on("click", function(){
-        resetEverything();
-    });
-
 
 function offerPlayAgain() {
     if (confirm("Play again?")) {
@@ -202,13 +122,119 @@ function offerPlayAgain() {
     }
 }
 
-resetEverything();      // this function works
+function bigWin() {
+    if (wins == 3) {
+        alert("YOU HAVE DEFEATED ALL ENEMY POKEMON!!");
+        offerPlayAgain();
+    }
+}
+
+
+function battletime() {
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+resetEverything();
 choosePoke();
+
+}); // to Document Ready Function
+
+
+
+
+
+
+
+// function battletime() {console.log("attacking");
+//         rounds++;
+//         pokeArray[oppPoke].hp  = pokeArray[oppPoke].hp - pokeArray[userPoke].att;
+//         pokeArray[userPoke].hp = pokeArray[userPoke].hp - pokeArray[oppPoke].att;
+
+//     var description = pokeArray[userPoke].name + " attacks " + pokeArray[oppPoke].name + " for " + pokeArray[oppPoke].att + " damage!<br>" +
+//         pokeArray[oppPoke].name + " counter attacks for " + pokeArray[oppPoke].counteratt + " damage!<br>" +
+//         pokeArray[userPoke].name + "'s attack power has increased by " + rounds + "!";
+//     $('#instructions').html(description);
+// }
+// // this is where I want to put poke-specific messages for each
+// // eg: if id = eevee, [eevee] used (etc)
+// // ----------------------------------------------- section for declaring functions -------------------------------------------------- //
+
+
+
+// // ----------------------------------------------- section for MAKE IT SO -------------------------------------------------- //
+
+//     $('#attackbutton').on("click", function() {console.log(myPoke);console.log(yourPoke);
+// //        if(chosePoke == false) {
+// //            $('#battledescrip').html("You can't pokebattle without a pokemon!");
+// //        }
+// //        else if(choseEnemy == false) {
+// //            $('#battledescrip').html("Choose your enemy pokemon!");
+// //        }
+//         battletime(); 
+
+//             if(pokeArray[oppPoke].hp < 0) {
+//                 numberofenemies--;
+//                 if(numberofenemies > 0) {
+//                     $(".yourPoke").remove();
+//                     $('#battledescrip').html(pokeArray[oppPoke].name + " has fainted!");
+//                     $("#instructions").html("Who will you duel next?");
+//                     choseEnemy == false;
+//                 }
+//                 else {
+//                     battletime();
+//                     alert("You're the Pokemon Master!'");
+//                     wins++;
+//                     $('#winsdiv').html(wins);
+//                     offerPlayAgain();
+//                 }
+                
+//             }
+//             else if(pokeArray[userPoke].hp < 0) {
+//                 battletime();
+//                 alert("Choose a new pokemon to play again!");
+//                 loses++;
+//                 $('#lossesdiv').html(losses);
+//                 offerPlayAgain();
+//             }
+//             else {
+//                 battletime();
+//                 standOnBattleGround();
+//             }
+
+//             pokeArray[userPoke].att = pokeArray[userPoke].att + rounds;
+//         }
+//     });
+
+//     $('#restartbutton').on("click", function(){
+// //         resetEverything();
+//      });
+
+
+
+
+// resetEverything();      // this function works
+// choosePoke();
 
 
     // ----------------------------------------------- section for MAKE IT SO finito -------------------------------------------------- //
 
-}); // to Document Ready Function
 
 // ---------------------------------------------------------------------------------------------------------------------------------------//
 // ---------------------------------------------------------------------------------------------------------------------------------------//
@@ -242,12 +268,7 @@ choosePoke();
 //     }
 // };
 
-// function bigWin() {
-//     if (wins == 4) {
-//         alert("YOU HAVE DEFEATED ALL ENEMY POKEMON!!");
-//         offerPlayAgain();
-//     }
-// };
+;
 
 
 // ----------------------------- section for declaring functions finito ---------------------------- //
