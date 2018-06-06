@@ -16,6 +16,9 @@ var rounds = 10; // number by which to increment att.  (may fiddle with this as 
 var wins = 0;
 var losses = 0;
 
+var myPoke = 0;
+var yourPoke = 0;
+
 
 function resetEverything() {
     userPoke = {};
@@ -77,7 +80,7 @@ function resetEverything() {
     $('#battledescrip').html(""); // this cleans out the battle-description box
     alert("this has run through the entire resetEverything function");
     
-choosePoke();    
+// choosePoke();    
 
 }; // this is the closing curly for resetEverything
 // ------------------------------------------------ vars and reset section complete ---------------------------------------------------- //
@@ -89,19 +92,23 @@ choosePoke();
 // something about this section of code isn't working.  I need to find out why. ------------------------------------ To Ask In Class
 function choosePoke() {
     $(".pokes").on("click", function() {
+
         if(chosePoke == false) {
             userPoke = $(this).attr('id');
             $("#userChosenPoke").append(this);
             $(this).addClass("myPoke");
-            chosePoke == true;
+            chosePoke = true;
             console.log("user has chosen a poke!");
             $('#battledescrip').html("");
             $("#instructions").html("Now choose the first pokemon you'd like to battle!");
-        } else if(chosePoke == true && !choseEnemy && userPoke !== $(this).attr('id')) {	
+        }
+        // else if(chosePoke == true && !choseEnemy && userPoke !== $(this).attr('id'))
+        else
+         {
             oppPoke = $(this).attr('id');
             $("#userChosenEnemy").append(this);
             $(this).addClass("yourPoke");    
-            choseEnemy == true;
+            choseEnemy = true;
             console.log("user has chosen first enemy!")
             $('#battledescrip').html("");
             $("#instructions").html("Your pokebattle is about to begin! Click attack!");
@@ -138,7 +145,7 @@ function battletime() {
 
 // ----------------------------------------------- section for MAKE IT SO -------------------------------------------------- //
 
-    $('#attackbutton').on("click", function() {console.log(chosePoke);console.log(choseEnemy);
+    $('#attackbutton').on("click", function() {console.log(myPoke);console.log(yourPoke);
         if(chosePoke == false) {
             $('#battledescrip').html("You can't pokebattle without a pokemon!");
         }
