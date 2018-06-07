@@ -130,12 +130,35 @@ function chooseEnemy() {
 function battletime() { console.log("battling")
     description = "let's try this";
     $("instructions").html(description);
-    
+    userPoke.hp = userPoke.hp - oppPoke.attack;
+    oppPoke.hp =  oppPoke.hp - userPoke.attack; 
 }
 
-$( ".attackbutton" ).on( "click", function() {console.log("clicking attack button")
+$(".attackbutton" ).on( "click", function() {console.log("clicking attack button")
     battletime();
+
+    if(userPoke.hp = 0) {
+        $("instructions").html(oppPoke.name + " has fainted!  Chose your next opponent!");
+        winCondition();
+    }
+
+    if(oppPoke.hp = 0) {
+        $("instructions").html(userPoke.name + " has fainted!");
+        loseCondition();
+    }
 });
+
+
+function winCondition() {
+     wins++;
+     chooseNextOpponent();
+     }
+
+function loseCondition() {
+        losses++;
+        alert("You've lost the Pokebattle! Choose a new pokemon to play again!");
+        chooseNextOpponent();
+    }
 
 
 function offerPlayAgain() {
