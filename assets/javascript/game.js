@@ -19,6 +19,8 @@ var losses = 0;
 var myPoke = 0;
 var yourPoke = 0;
 
+var thisisyourpoke = false;
+var thisisyourenemy = false;
 
 function resetEverything() {
     userPoke = {};
@@ -77,7 +79,7 @@ function resetEverything() {
 
     $("#fourwholepokes").html(pokeChoices);
     $("#instructions").html("Choose a starter!");
-    $('#battledescrip').html(""); // this cleans out the battle-description box
+//    $('#battledescrip').html(""); // do I even need a separate battle-description box? NO!!!! I DON'T!!!
     alert("this has run through the entire resetEverything function");
     
 // choosePoke();    
@@ -92,26 +94,54 @@ function resetEverything() {
 // something about this section of code isn't working.  I need to find out why. ------------------------------------ To Ask In Class
 function choosePoke() {
     $(".pokes").on("click", function() {
+        $("#userChosenPoke").append(this);
+        userPoke = $(this).attr('id','name','backpic','hp','att','counteratt'); // I still don't know how to get these attributes added
+        $(this).addClass("myPoke");
+        chosePoke = true;
+        thisisyourpoke = true;
+        console.log("user has chosen a poke!");
+        $("#instructions").html("You've chosen a pokemon!  Great!  Now choose the first pokemon you'd like to battle!");
 
-        if(chosePoke == false) {
-            userPoke = $(this).attr('id');
-            $("#userChosenPoke").append(this);
-            $(this).addClass("myPoke");
-            chosePoke = true;
-            console.log("user has chosen a poke!");
-            $('#battledescrip').html("");
-            $("#instructions").html("Now choose the first pokemon you'd like to battle!");
-        } else {
-            oppPoke = $(this).attr('id');
-            $("#userChosenEnemy").append(this);
-            $(this).addClass("yourPoke");    
-            choseEnemy = true;
-            console.log("user has chosen first enemy!")
-            $('#battledescrip').html("");
-            $("#instructions").html("Your pokebattle is about to begin! Click attack!");
+        if (thisisyourpoke == true) {
+            chooseEnemy();
         }
-     }); // to onclick
+        
+    }); // to onclick
 };
+
+
+function chooseEnemy() {
+    $(".pokes").on("click", function() {
+        $("#userChosenEnemy").append(this);
+        enemyPoke = $(this).attr('id','name','backpic','hp','att','counteratt');
+        $(this).addClass("yourPoke");
+        choseEnemy = true;
+        thisisyourenemy = true;
+        console.log("user has chosen an enemy!");
+        $("#instructions").html("You've chosen an enemy pokemon!  Prepare for battle!  <br> To battle your enemy pokemon, click Attack!");
+    }); // to onclick
+};
+
+choosePoke();
+
+
+        // if(chosePoke == false) {
+        //     userPoke = $(this).attr('id');
+        //     $("#userChosenPoke").append(this);
+        //     $(this).addClass("myPoke");
+        //     chosePoke = true;
+        //     console.log("user has chosen a poke!");
+        //     $('#battledescrip').html("");
+        //     $("#instructions").html("Now choose the first pokemon you'd like to battle!");
+        // } else {
+        //     oppPoke = $(this).attr('id');
+        //     $("#userChosenEnemy").append(this);
+        //     $(this).addClass("yourPoke");    
+        //     choseEnemy = true;
+        //     console.log("user has chosen first enemy!")
+        //     $('#battledescrip').html("");
+        //     $("#instructions").html("Your pokebattle is about to begin! Click attack!");
+//        }
 
 
 function offerPlayAgain() {
@@ -131,7 +161,7 @@ function bigWin() {
 
 
 function battletime() {
-    
+
 }
 
 
