@@ -223,9 +223,186 @@ $(document).ready(function() {
     
     }; // this is the closing curly for resetEverything
     
-    // ------------------------------------------------------------------------------------------------------------------------
-
+// ----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------v-----------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------
     Here are some ways I foudn for it not to work :D 
 
     //        $(this).hide();
 //        $(this).insertAfter("#userChosenPoke");
+
+<div class="container-fluid text-center">
+<div class="row pokes">
+  <div class="col-md-3">
+  <button type="button" id="bulbabutton">Bulbasaur<br>
+      <img src="assets/images/bulbasaur.png"><br>
+      <p id="health">health</p>
+  </button></div>
+  <div class="col-md-3">
+      <button type="button" id="eeveebutton">Eevee<br>
+    <img src="assets/images/eevee.png"><br>
+    <p id="health2">health</p>
+  </button></div>
+  <div class="col-md-3">
+      <button type="button" id="mareepbutton">Mareep<br>
+    <img src="assets/images/mareep.png"><br>
+    <p id="health3">health</p>
+  </button></div>
+  <div class="col-md-3">
+      <button type="button" id="vulpixbutton">Vulpix<br>
+    <img src="assets/images/vulpix.png"><br>
+    <p id="health4">health</p>
+  </button></div>
+</div>    
+</div>
+
+  <div class="container-fluid text-center">
+      <div class="row pokes text-center">
+        <div id="bulbadiv"><img src="assets/images/bulbasaur.png" /> </div>
+        <div id="eeveediv"></div>
+        <div id="mareepdiv"></div>
+        <div id="vulpixdiv"></div>
+        <!-- <div id="fourwholepokes" class="text-center"></div> this is where four whole pokes go-->         
+      </div>    
+    </div>
+
+ -------------------------------
+
+
+// ///     // ------------------------------------------------------------------------------------------------------------------------
+
+// function battletime() {console.log("attacking");
+//         rounds++;
+//         pokeArray[oppPoke].hp  = pokeArray[oppPoke].hp - pokeArray[userPoke].att;
+//         pokeArray[userPoke].hp = pokeArray[userPoke].hp - pokeArray[oppPoke].att;
+
+//     var description = pokeArray[userPoke].name + " attacks " + pokeArray[oppPoke].name + " for " + pokeArray[oppPoke].att + " damage!<br>" +
+//         pokeArray[oppPoke].name + " counter attacks for " + pokeArray[oppPoke].counteratt + " damage!<br>" +
+//         pokeArray[userPoke].name + "'s attack power has increased by " + rounds + "!";
+//     $('#instructions').html(description);
+// }
+// // this is where I want to put poke-specific messages for each
+// // eg: if id = eevee, [eevee] used (etc)
+// // ----------------------------------------------- section for declaring functions -------------------------------------------------- //
+
+
+
+// // ----------------------------------------------- section for MAKE IT SO -------------------------------------------------- //
+
+//     $('#attackbutton').on("click", function() {console.log(myPoke);console.log(yourPoke);
+// //        if(chosePoke == false) {
+// //            $('#battledescrip').html("You can't pokebattle without a pokemon!");
+// //        }
+// //        else if(choseEnemy == false) {
+// //            $('#battledescrip').html("Choose your enemy pokemon!");
+// //        }
+//         battletime(); 
+
+//             if(pokeArray[oppPoke].hp < 0) {
+//                 numberofenemies--;
+//                 if(numberofenemies > 0) {
+//                     $(".yourPoke").remove();
+//                     $('#battledescrip').html(pokeArray[oppPoke].name + " has fainted!");
+//                     $("#instructions").html("Who will you duel next?");
+//                     choseEnemy == false;
+//                 }
+//                 else {
+//                     battletime();
+//                     alert("You're the Pokemon Master!'");
+//                     wins++;
+//                     $('#winsdiv').html(wins);
+//                     offerPlayAgain();
+//                 }
+                
+//             }
+//             else if(pokeArray[userPoke].hp < 0) {
+//                 battletime();
+//                 alert("Choose a new pokemon to play again!");
+//                 loses++;
+//                 $('#lossesdiv').html(losses);
+//                 offerPlayAgain();
+//             }
+//             else {
+//                 battletime();
+//                 standOnBattleGround();
+//             }
+
+//             pokeArray[userPoke].att = pokeArray[userPoke].att + rounds;
+//         }
+//     });
+
+//     $('#restartbutton').on("click", function(){
+// //         resetEverything();
+//      });
+
+
+
+
+// resetEverything();      // this function works
+// choosePoke();
+
+
+    // ----------------------------------------------- section for MAKE IT SO finito -------------------------------------------------- //
+
+
+// ---------------------------------------------------------------------------------------------------------------------------------------//
+// ---------------------------------------------------------------------------------------------------------------------------------------//
+// ---------------------------------------------------------------------------------------------------------------------------------------//
+// ---------------------------------------------------------------------------------------------------------------------------------------//
+// ---------------------------------------------------------------------------------------------------------------------------------------//
+
+
+// ----------------------------------------------------------- NOTES BELOW -------------------------------------------------------------//
+
+
+// function pokeEnemies() {
+//     if (pokeChoices.length < 4) {
+//         $("#enemypokes").push("thesearebadguys");
+//     }
+// };
+
+
+// function winCondition() {
+//      if (-----------) userPoke's HP is) {
+//      wins++;
+//      chooseNextOpponent();
+//      }
+// };
+
+// function loseCondition() {
+//     if (------------userPoke's HP is <= 0) {
+//         losses++;
+//         alert("You've lost! Choose a new pokemon to play again!");
+//         chooseNextOpponent(); 
+//     }
+// };
+
+;
+
+
+// ----------------------------- section for declaring functions finito ---------------------------- //
+
+// ---------------------------------- section for calling functions --------------------------------- //
+
+// $("#restartgame").on("click", function offerPlayAgain());
+
+// standOnBattleGround();
+
+
+
+// choosePoke();
+// pokeEnemies();
+
+
+// bigWin();            // this function works, but I am commenting it out during building/testing
+// loseCondition();     // this function works, but I am commenting it out during building/testing
+// winCondition();      // this function works, but I am commenting it out during building/testing
+
+
+// ------------------------------ section for calling functions finito ------------------------------ //
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -4,7 +4,7 @@ $(document).ready(function() {
 var userPoke = {}; 
 var oppPoke = {};
 
-// var pokeChoices = [];
+var pokeChoices = [];
 var pokeArray = [bulbasaur, eevee, mareep, vulpix]; // in a later build I want to add more pokes and types
 var bulbasaur=    {
         "name" : "bulbasaur",
@@ -15,7 +15,7 @@ var bulbasaur=    {
         "frontpic" : 'assets/images/bulbasaur.png',
         "backpic" : 'assets/images/bulbaback.png',
     }; 
-$("#bulbadiv").append(bulbasaur);
+    $("#bulbadiv").append(bulbasaur);
 
 var eevee =    {
         "name" : "eevee",
@@ -26,6 +26,8 @@ var eevee =    {
         "frontpic" : 'assets/images/eevee.png',
         "backpic" : 'assets/images/eeveeback.png',
     };
+    $("#eeveediv").append(eevee);
+
 var mareep =     {
         "name" : "mareep",
         id : 2,
@@ -35,6 +37,8 @@ var mareep =     {
         "frontpic" : 'assets/images/mareep.png',
         "backpic" : 'assets/images/mareepback.png',
     };
+    $("#mareepdiv").append(mareep);
+
 var vulpix =    {
         "name" : "vulpix",
         id : 3,
@@ -44,18 +48,20 @@ var vulpix =    {
         "frontpic" : 'assets/images/vulpix.png',
         "backpic" : 'assets/images/vulpixback.png',
     }; 
+    $("#vulpixdiv").append(vulpix);
 
-var chosePoke; // this is the var for a user-poke being chosen or not ---------- boolean --------- ???set it yet or no?
-var choseEnemy; // this is the var for an enemy-poke being chosen or not ---------- boolean --------- ???set it yet or no?
 
-var numberofenemies; // how many enemies exist
-var rounds = 10; // number by which to increment att.  (may fiddle with this as testing continues!)
+var chosePoke  = false; // this is the var for a user-poke being chosen or not ---------- boolean --------- ???set it yet or no?
+var choseEnemy = false; // this is the var for an enemy-poke being chosen or not ---------- boolean --------- ???set it yet or no?
+
+// var numberofenemies; // how many enemies exist none of this fucking matters ebcaause it's old code from anotehr person
+// var rounds = 10; // number by which to increment att.   none of this fucking matters ebcaause it's old code from anotehr person
 
 var wins = 0;
 var losses = 0;
 
-var myPoke = 0;
-var yourPoke = 0;
+// var myPoke = 0;
+// var yourPoke = 0;
 
 var thisisyourpoke = false;
 var thisisyourenemy = false;
@@ -68,23 +74,19 @@ function resetEverything() {
     choseEnemy = false;
     numberofenemies = 3;
 
-    // for (var i = 0; i < pokeArray.length; i++) {
-    //     $("#fourwholepokes").append([i]);
-    // };
-
     $('.myPoke').remove();
     $('.yourPoke').remove(); //note: 'fighting'
     
-    // for (var i = 0; i < pokeArray.length; i++) {
-    //    pokeChoices += "<div id=" + pokeArray[i].name + " class='btn character text-center' value=" + pokeArray[i].name +
-    //    "><img class='pokes' src=" + pokeArray[i].frontpic + " alt=" + pokeArray[i].name + "><br> HP: " + pokeArray[i].hp +
-    //    "<br> Attack: " + pokeArray[i].attack + "<br> Counter-Attack: " + pokeArray[i].counteratt + " </div>";
-    //     console.log("this bit is working");
-    //     };                      
+    for (var i = 0; i < pokeArray.length; i++) {
+       pokeChoices += "<div id=" + pokeArray[i].name + " class='btn character text-center' value=" + pokeArray[i].name +
+       "><img class='pokes' src=" + pokeArray[i].frontpic + " alt=" + pokeArray[i].name + "><br> HP: " + pokeArray[i].hp +
+       "<br> Attack: " + pokeArray[i].attack + "<br> Counter-Attack: " + pokeArray[i].counteratt + " </div>";
+        console.log("this bit is working");
+        };                      
                             // Note to self: I love how this created a div in js! brilliant!  This is going in my toolbox.
                             // Second Note to Self: Update: I love it but I am going to use it sparingly, because it's kinda messy and I've learned a lot in the last three days
 
-    $("#fourwholepokes").html(pokeChoices);
+    $("#fourwholepokes").html(bulbasaur, eevee, mareep, vulpix);
     $("#instructions").html("Choose a starter!");
 //    $('#battledescrip').html(""); // do I even need a separate battle-description box? NO!!!! I DON'T!!!
     alert("this has run through the entire resetEverything function");

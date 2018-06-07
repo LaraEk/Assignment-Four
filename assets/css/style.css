@@ -8,14 +8,25 @@ body {
     width: 100px;
 }
 
+.buttons{
+    display: inline-block;
+    background:transparent;
+    text-align: center;
+    padding: 10px;
+    margin : 10px;
+    border:solid thick grey;
+    width: 250px;
+    height: 175px;
+}
 .logo {
     width: 200px;
 }
 
+/*
 .myPoke {
     float: left;
 }
 
 .yourPoke {
     float: left;
-}
+} */
