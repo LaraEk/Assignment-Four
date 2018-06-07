@@ -1,12 +1,12 @@
 $(document).ready(function() {
 // ------------------------------------------------ vars and reset ---------------------------------------------------- //
 
-var userPoke = {}; // 
-var oppPoke = {}; //
+var userPoke = {}; 
+var oppPoke = {};
 
-var pokeChoices = [];
-var pokeArray = [
-    {
+// var pokeChoices = [];
+var pokeArray = [bulbasaur, eevee, mareep, vulpix]; // in a later build I want to add more pokes and types
+var bulbasaur=    {
         "name" : "bulbasaur",
         id : 0,
         "hp" : 100,
@@ -14,7 +14,10 @@ var pokeArray = [
         "counteratt" : 25,
         "frontpic" : 'assets/images/bulbasaur.png',
         "backpic" : 'assets/images/bulbaback.png',
-    }, {
+    }; 
+$("#bulbadiv").append(bulbasaur);
+
+var eevee =    {
         "name" : "eevee",
         id : 1,
         "hp" : 160,
@@ -22,7 +25,8 @@ var pokeArray = [
         "counteratt" : 40,
         "frontpic" : 'assets/images/eevee.png',
         "backpic" : 'assets/images/eeveeback.png',
-    }, {
+    };
+var mareep =     {
         "name" : "mareep",
         id : 2,
         "hp" : 200,
@@ -30,7 +34,8 @@ var pokeArray = [
         "counteratt" : 50,
         "frontpic" : 'assets/images/mareep.png',
         "backpic" : 'assets/images/mareepback.png',
-    }, {
+    };
+var vulpix =    {
         "name" : "vulpix",
         id : 3,
         "hp" : 220,
@@ -38,8 +43,7 @@ var pokeArray = [
         "counteratt" : 55,
         "frontpic" : 'assets/images/vulpix.png',
         "backpic" : 'assets/images/vulpixback.png',
-    } ]; // this is the closing ] for pokeArray
-
+    }; 
 
 var chosePoke; // this is the var for a user-poke being chosen or not ---------- boolean --------- ???set it yet or no?
 var choseEnemy; // this is the var for an enemy-poke being chosen or not ---------- boolean --------- ???set it yet or no?
@@ -64,15 +68,19 @@ function resetEverything() {
     choseEnemy = false;
     numberofenemies = 3;
 
+    // for (var i = 0; i < pokeArray.length; i++) {
+    //     $("#fourwholepokes").append([i]);
+    // };
+
     $('.myPoke').remove();
     $('.yourPoke').remove(); //note: 'fighting'
     
-    for (var i = 0; i < pokeArray.length; i++) {
-       pokeChoices += "<div id=" + pokeArray[i].name + " class='btn character text-center' value=" + pokeArray[i].name +
-       "><img class='pokes' src=" + pokeArray[i].frontpic + " alt=" + pokeArray[i].name + "><br> HP: " + pokeArray[i].hp +
-       "<br> Attack: " + pokeArray[i].attack + "<br> Counter-Attack: " + pokeArray[i].counteratt + " </div>";
-        console.log("this bit is working");
-        };                      
+    // for (var i = 0; i < pokeArray.length; i++) {
+    //    pokeChoices += "<div id=" + pokeArray[i].name + " class='btn character text-center' value=" + pokeArray[i].name +
+    //    "><img class='pokes' src=" + pokeArray[i].frontpic + " alt=" + pokeArray[i].name + "><br> HP: " + pokeArray[i].hp +
+    //    "<br> Attack: " + pokeArray[i].attack + "<br> Counter-Attack: " + pokeArray[i].counteratt + " </div>";
+    //     console.log("this bit is working");
+    //     };                      
                             // Note to self: I love how this created a div in js! brilliant!  This is going in my toolbox.
                             // Second Note to Self: Update: I love it but I am going to use it sparingly, because it's kinda messy and I've learned a lot in the last three days
 
