@@ -3,6 +3,18 @@ $(document).ready(function() {
     
     var userPoke = {}; 
     var oppPoke = {}; 
+
+    var userhp = 0;
+    var enemyhp = 0;
+
+    var userattack = 0;
+    var enemyattack = 0;
+
+    var usercounterattack = 0;
+    var enemycounterattack = 0;
+
+//    var pokepower = 0;
+//    var enemypower = 0;
     
     pokeChoices = [];
     pokeArray = [
@@ -11,7 +23,7 @@ $(document).ready(function() {
             id : 0,
             "hp" : 100,
             "attack" : 5,
-            "counteratt" : 25,
+            "counteratt" : 10,
             "frontpic" : 'assets/images/bulbasaur.png',
             "backpic" : 'assets/images/bulbaback.png',
         }, {
@@ -19,7 +31,7 @@ $(document).ready(function() {
             id : 1,
             "hp" : 160,
             "attack" : 8,
-            "counteratt" : 40,
+            "counteratt" : 16,
             "frontpic" : 'assets/images/eevee.png',
             "backpic" : 'assets/images/eeveeback.png',
         }, {
@@ -27,7 +39,7 @@ $(document).ready(function() {
             id : 2,
             "hp" : 200,
             "attack" : 10,
-            "counteratt" : 50,
+            "counteratt" : 20,
             "frontpic" : 'assets/images/mareep.png',
             "backpic" : 'assets/images/mareepback.png',
         }, {
@@ -35,16 +47,15 @@ $(document).ready(function() {
             id : 3,
             "hp" : 220,
             "attack" : 11,
-            "counteratt" : 55,
+            "counteratt" : 22,
             "frontpic" : 'assets/images/vulpix.png',
             "backpic" : 'assets/images/vulpixback.png',
         } ]; // this is the closing ] for pokeArray
     
     var chosePoke = false; // this is the var for a user-poke being chosen or not ---------- boolean --------- ???set it yet or no?
     var choseEnemy = false; // this is the var for an enemy-poke being chosen or not ---------- boolean --------- ???set it yet or no?
-    
-//    var numberofenemies; // how many enemies exist
-//    var rounds = 10; // number by which to increment att.  (may fiddle with this as testing continues!)
+
+    var incrementattackpower = 10;
     
     var wins = 0;
     var losses = 0;
@@ -65,9 +76,11 @@ $(document).ready(function() {
     
         
         for (var i = 0; i < pokeArray.length; i++) {
-           pokeChoices += "<div id=" + pokeArray[i].name + " class='btn character text-center' value=" + pokeArray[i].name +
-           "><img class='pokes' src=" + pokeArray[i].frontpic + " alt=" + pokeArray[i].name + "><br> HP: " + pokeArray[i].hp +
-           "<br> Attack: " + pokeArray[i].attack + "<br> Counter-Attack: " + pokeArray[i].counteratt + " </div>";
+           pokeChoices += "<div id=" + pokeArray[i].name + 
+                            " class='btn character text-center' value=" + pokeArray[i].name +
+                            "><img class='pokes' src=" + pokeArray[i].frontpic + 
+                            " alt=" + pokeArray[i].name + " data-hp= " + pokeArray[i].hp + " data-attack= " + pokeArray[i].attack + " data-counterattack= " + pokeArray[i].counteratt + 
+                            "><br> HP: " + pokeArray[i].hp +"<br> Attack: " + pokeArray[i].attack + "<br> Counter-Attack: " + pokeArray[i].counteratt + " </div>";
             console.log("this bit is working");
             };                      
                                 // Note to self: I love how this created a div in js! brilliant!  This is going in my toolbox.
@@ -93,8 +106,14 @@ choosePoke();
 function choosePoke() {
     $(".pokes").on("click", function() {
         $("#userChosenPoke").append(this);
-        userPoke = $(this).attr('id','name','backpic','hp','att','counteratt'); // I still don't know how to get these attributes added
+
+        userPoke = $(this);
         $(this).addClass("myPoke");
+
+        userhp = $(this).attr("data-hp");
+        userattack = $(this).attr("data-attack");
+        usercounterattack = $(this).attr("data-counterattack");
+    
         chosePoke = true;
         thisisyourpoke = true;
         console.log("user has chosen a poke!");
@@ -111,6 +130,12 @@ function chooseEnemy() {
     $(".pokes").on("click", function() {
         $("#userChosenEnemy").append(this);
         enemyPoke = $(this).attr('id','name','backpic','hp','att','counteratt');
+
+        enemyhp = $(this).attr("data-hp");
+        enemyattack = $(this).attr("data-attack");
+        enemycounterattack = $(this).attr("data-counterattack");
+        
+
         $(this).addClass("yourPoke");
         choseEnemy = true;
         thisisyourenemy = true;
@@ -130,12 +155,17 @@ function chooseEnemy() {
 function battletime() { console.log("battling")
     description = "let's try this";
     $("instructions").html(description);
-    userPoke.hp = userPoke.hp - oppPoke.attack;
-    oppPoke.hp =  oppPoke.hp - userPoke.attack; 
+
+    userPoke.hp = userhp - enemycounterattack;
+    oppPoke.hp = enemyhp - userattack;
+    console.log(userPoke.hp);
+    console.log(oppPoke.hp);
+
 }
 
 $(".attackbutton" ).on( "click", function() {console.log("clicking attack button")
     battletime();
+    userattack = userattack + incrementattackpower;
 
     if(userPoke.hp = 0) {
         $("instructions").html(oppPoke.name + " has fainted!  Chose your next opponent!");
