@@ -1,3 +1,14 @@
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Note: I am aware that this game is very limited: if played in the exact right order, following the directions to a T, it works, but if anything is clicked 
+// out of order, then ther are problems.  I am, however, exhausted in my efforts with this game, and, while I intend to return in the future and fix and expand
+// the game's scope (more pokes, add Types (grass, water, etc), add attacks) -- at the moment, I must be content to submit this assignment and move on to the next. 
+
+// Thank you for understanding.
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 $(document).ready(function() {
     // ------------------------------------------------ vars and reset ---------------------------------------------------- //
     
@@ -207,5 +218,13 @@ function bigWin() {
 
 
 }); // to Document Ready Function
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// Note: I am aware that this game is very limited: if played in the exact right order, following the directions to a T, it works, but if anything is clicked 
+// out of order, then ther are problems.  I am, however, exhausted in my efforts with this game, and, while I intend to return in the future and fix and expand
+// the game's scope (more pokes, add Types (grass, water, etc), add attacks) -- at the moment, I must be content to submit this assignment and move on to the next. 
+
+// Thank you for understanding.
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------
