@@ -13,8 +13,6 @@ $(document).ready(function() {
     var usercounterattack = 0;
     var enemycounterattack = 0;
 
-//    var pokepower = 0;
-//    var enemypower = 0;
     
     pokeChoices = [];
     pokeArray = [
@@ -52,16 +50,14 @@ $(document).ready(function() {
             "backpic" : 'assets/images/vulpixback.png',
         } ]; // this is the closing ] for pokeArray
     
-    var chosePoke = false; // this is the var for a user-poke being chosen or not ---------- boolean --------- ???set it yet or no?
-    var choseEnemy = false; // this is the var for an enemy-poke being chosen or not ---------- boolean --------- ???set it yet or no?
+    var chosePoke = false; 
+    var choseEnemy = false; 
 
     var incrementattackpower = 10;
     
     var wins = 0;
     var losses = 0;
     
-//    var myPoke = 0;
-//    var yourPoke = 0;
     
     
     function resetEverything() {
@@ -72,7 +68,7 @@ $(document).ready(function() {
         numberofenemies = 3;
     
         $('.myPoke').remove();
-        $('.yourPoke').remove(); //note: 'fighting'
+        $('.yourPoke').remove();
     
         
         for (var i = 0; i < pokeArray.length; i++) {
@@ -83,14 +79,11 @@ $(document).ready(function() {
                             "><br> HP: " + pokeArray[i].hp +"<br> Attack: " + pokeArray[i].attack + "<br> Counter-Attack: " + pokeArray[i].counteratt + " </div>";
             console.log("this bit is working");
             };                      
-                                // Note to self: I love how this created a div in js! brilliant!  This is going in my toolbox.
     
         $("#fourwholepokes").html(pokeChoices);
         $("#instructions").html("Choose a starter!");
-//        $('#battledescrip').html(""); // I don't need a battle-description box
-        alert("this has run through the entire resetEverything function");
+//        alert("this has run through the entire resetEverything function");
         
-    // choosePoke();    
     
     }; // this is the closing curly for resetEverything
 
@@ -110,9 +103,9 @@ function choosePoke() {
         userPoke = $(this);
         $(this).addClass("myPoke");
 
-        userhp = $(this).attr("data-hp");
-        userattack = $(this).attr("data-attack");
-        usercounterattack = $(this).attr("data-counterattack");
+        userhp = parseInt($(this).attr("data-hp"));
+        userattack = parseInt($(this).attr("data-attack"));
+        usercounterattack = parseInt($(this).attr("data-counterattack"));
     
         chosePoke = true;
         thisisyourpoke = true;
@@ -131,9 +124,9 @@ function chooseEnemy() {
         $("#userChosenEnemy").append(this);
         enemyPoke = $(this).attr('id','name','backpic','hp','att','counteratt');
 
-        enemyhp = $(this).attr("data-hp");
-        enemyattack = $(this).attr("data-attack");
-        enemycounterattack = $(this).attr("data-counterattack");
+        enemyhp = parseInt($(this).attr("data-hp"));
+        enemyattack = parseInt($(this).attr("data-attack"));
+        enemycounterattack = parseInt($(this).attr("data-counterattack"));
         
 
         $(this).addClass("yourPoke");
@@ -142,37 +135,36 @@ function chooseEnemy() {
         console.log("user has chosen an enemy!");
         $("#instructions").html("You've chosen an enemy pokemon!  Prepare for battle!  <br> To battle your enemy pokemon, click Pokebattle!");
 
-        // if (thisisyourenemy == true) {
-        //     //hide other pokes?
-        //     battletime();
-        // }  
     }); // to onclick
 };
 
-// choosePoke();
 
 
-function battletime() { console.log("battling")
-    description = "let's try this";
-    $("instructions").html(description);
+// function battletime() { console.log("battling")
+// }
 
-    userPoke.hp = userhp - enemycounterattack;
-    oppPoke.hp = enemyhp - userattack;
-    console.log(userPoke.hp);
-    console.log(oppPoke.hp);
 
-}
+$("#attackbutton" ).on( "click", function() {console.log("clicking attack button")
+ 
+    userhp = userhp - enemycounterattack;
+    enemyhp = enemyhp - userattack;
+    console.log(userhp);
+    console.log(enemyhp);
+ 
+    alert("Your pokemon has lost " + enemycounterattack + " HP and is now at " + userhp + " points! Your opponent has lost " + userattack + " HP and is now at " + enemyhp + "points!");
+    $("instructions").html("Keep clicking on Pokebattle to attack your enemy!")
 
-$(".attackbutton" ).on( "click", function() {console.log("clicking attack button")
-    battletime();
     userattack = userattack + incrementattackpower;
 
-    if(userPoke.hp = 0) {
+    if(enemyhp <= 0) {
         $("instructions").html(oppPoke.name + " has fainted!  Chose your next opponent!");
+        alert(oppPoke.name + " has fainted!  Chose your next opponent!");
         winCondition();
+        $(".yourPoke").hide();
+        bigWin();
     }
 
-    if(oppPoke.hp = 0) {
+    if(userhp <= 0) {
         $("instructions").html(userPoke.name + " has fainted!");
         loseCondition();
     }
@@ -191,11 +183,18 @@ function loseCondition() {
     }
 
 
+function chooseNextOpponent() {
+    choseEnemy = false;
+    thisisyourenemy = false;
+    chooseEnemy();
+}
+
 function offerPlayAgain() {
     if (confirm("Play again?")) {
-        resetEverything();
+        window.location.reload(true);
     } else {
         alert("Bye!");
+        window.location.reload(true);
     }
 }
 
@@ -205,8 +204,6 @@ function bigWin() {
         offerPlayAgain();
     }
 }
-
-
 
 
 }); // to Document Ready Function
